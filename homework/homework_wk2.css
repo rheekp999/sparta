@@ -1,0 +1,22 @@
+<style>
+		#wrap {
+			width: 500px;
+			margin: 2rem auto;
+			padding: 2rem ;
+			flot:left;
+		}
+		.first_area{
+			float:left;
+		}
+
+		.second_area {
+			margin: 2rem auto;
+			padding: 2rem auto;
+		}
+		.title{
+			font-size: 20px
+		}
+		#price{text-align: center;
+
+		}
+	</style>

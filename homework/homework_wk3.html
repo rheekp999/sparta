@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<!-- 합쳐지고 최소화된 최신 CSS -->
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
+
+	<!-- 부가적인 테마 -->
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap-theme.min.css">
+
+	<!-- 합쳐지고 최소화된 최신 자바스크립트 -->
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"></script>
+
+	<style>
+		#wrap {
+			width: 500px;
+			margin: 2rem auto;
+			padding: 2rem ;
+			flot:left;
+		}
+		.first_area{
+			float:left;
+		}
+
+		.second_area {
+			margin: 2rem auto;
+			padding: 2rem auto;
+		}
+		.title{
+			font-size: 20px
+		}
+		#price{text-align: center;
+
+		}
+	</style>
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+
+	<script>
+		function q1(){
+			let name= $('#input-q1').val();
+			if (name==''){
+				alert('주문자 성함을 입력해주세요!!');
+				$('#input-q1').focus();
+
+			} else {
+			}
+
+		}
+
+		function q2(){
+			let count= $('#input-q2').val();
+			if (count=='----수량을 선택하세요----'){
+				alert('수량을 선택해주세요!!');
+				$('#input-q2').focus();
+
+			} else {
+			}
+
+		}
+
+		function q3(){
+			let address= $('#input-q3').val();
+			if (address==''){
+				alert('주소를 입력해주세요!!');
+				$('#input-q3').focus();
+
+
+			} else {
+			}
+
+		}
+		function q4(){
+			let phone= $('#input-q4').val();
+			if (phone==''){
+				alert('연락처를 입력해주세요!!');
+				$('#input-q4').focus();
+
+			} else {
+			}
+
+		}
+		function q5(){
+			var regExp = /^01([0|1|6|7|8|9]?)-?([0-9]{3,4})-?([0-9]{4})$/;
+			if ( !regExp.test( $('#input-q4').val() ) ) {
+				alert("잘못된 휴대폰 번호입니다. 숫자, - 를 포함한 숫자만 입력하세요.");
+			}
+			else {
+
+			}} 
+		</script>
+		<script>
+			$(document).ready(function(){
+				$('#order-list').html('');
+				listing();
+			});
+
+			function listing() {
+				$.ajax({
+					type : "GET",
+					url : "http://spartacodingclub.shop/order",
+					data : {},
+					success: function(response){
+						let orders = response["orders"];
+						for (let i = 0; i < orders.length; i++) {
+							let name = orders[i]["name"];
+							let count = orders[i]["count"];
+							let address = orders[i]["address"];
+							let phone = orders[i]["phone"];
+							let temp_html = "<thead>\
+							<tr>\
+							<th>이름</th>\
+							<th>수량</th>\
+							<th>주소</th>\
+							<th>전화번호</th>\
+							</tr>\
+							</thead>\
+							<tbody>\
+							<tr>\
+							<td>"+name+"</td>\
+							<td>"+count+"</td>\
+							<td>"+address+"</td>\
+							<td>"+phone+"</td>\
+							</tr>\
+							</tbody>"
+							$("#order-list").append(temp_html);
+
+						}
+					}
+				})
+
+			}
+
+
+			
+		</script>
+
+
+
+	</head>
+
+	<body>
+		<div id="wrap">
+			<center><img src="http://www.bloter.net/wp-content/uploads/2019/11/Cybertruck-5-1676x1118-765x510.jpg" width="450px"></center><br/>
+			<div>
+				<!-- 상품소개 영역 -->
+				<div class=first_area><div class=title>테슬라 사이버 트럭 </div></div>
+				<div id=price>가격: 1,000원 / 개 </div> <br/>
+				
+			사이버트럭은 싱글 모터 후륜구동, 듀얼 모터 사륜구동, 트라이 모터 사륜구동 등 세 가지 라인업을 갖췄다. 전기차인 만큼 가속 성능도 웬만한 스포츠카를 능가한다. 모터 갯수에 따라 정지 상태에서 100km/h 가속에 각각 6.5초, 4.5초, 2.9초가 소요된다. 완충 시 주행 가능 거리는 400km~800km 수준이다. 강력한 힘에 걸맞은 적재 용량(1587kg)과 견인 하중(6350kg)까지 갖췄다. 더불어 자율주행 옵션도 제공해 장거리 주행의 효율을 높였다.</div>
+			<div class="second_area">
+
+				<!-- 주문하기 영역 -->
+				<h1 class="title">주문하기</h1>
+				<div class="input-group">
+					<span class="input-group-addon" id="basic-addon1">주문자 성함</span>
+					<input id=input-q1 type="text" class="form-control" placeholder="홍길동" aria-describedby="basic-addon1">
+				</div>
+				<br/>
+				<div class="input-group">
+					<span class="input-group-addon" id="basic-addon1">수량</span>
+					<select id=input-q2 class="form-control">
+						<option>----수량을 선택하세요----</option>
+						<option>1</option>
+						<option>2</option>
+						<option>3</option>
+						<option>4</option>
+						<option>5</option>
+					</select> 
+
+				</div><br/>
+				<div class="input-group">
+					<span class="input-group-addon" id="basic-addon1">주소</span>
+					<input id=input-q3 type="text" class="form-control" placeholder="도로명 주소를 입력해주세요." aria-describedby="basic-addon1">
+				</div> <br/>
+
+				<div class="input-group">
+					<span class="input-group-addon" id="basic-addon1">전화번호</span>
+					<input id=input-q4 type="text" class="form-control" placeholder="'-'를 제외한 휴대폰 번호를 입력해주세요." aria-describedby="basic-addon1">
+				</div><br/>
+				<button onclick="q1(), q2(), q3(), q4(), q5()" type="button" class="btn btn-primary btn-lg btn-block" >주문하기</button>
+
+				<table class="table" id="order-list">
+					<br/>
+					<br/>
+					<thead>
+						<tr>
+							<th scope="col">이름</th>
+							<th scope="col">수량</th>
+							<th scope="col">주소</th>
+							<th scope="col">전화번호</th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr>
+							<td>Mark</td>
+							<td>Mark</td>
+							<td>Otto</td>
+							<td>@mdo</td>
+						</tr>
+					</tbody>
+				</table>
+
+
+			</div>
+		</div>
+	</body>
+
+	</html>
